@@ -1,0 +1,11 @@
+---
+# vars file for ansible-role-ec2
+    keypair: aws2
+    instance_type: t2.micro
+    security_group: security_group
+    image: ami-0a74bfeb190bd404f
+    region: ap-south-1
+    count: 1
+
+
+

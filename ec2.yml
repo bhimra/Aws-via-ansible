@@ -1,0 +1,6 @@
+---
+ - name: lauching ec2
+   hosts: localhost
+   connection: localhost
+   roles: 
+    - ec2 

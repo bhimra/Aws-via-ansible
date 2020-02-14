@@ -1,0 +1,6 @@
+---
+# handlers file for ec2
+
+- name: ec2_facts
+  debug:
+    msg: "IP is {{ instance.public_ip }}"

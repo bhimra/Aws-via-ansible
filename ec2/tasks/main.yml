@@ -1,0 +1,36 @@
+- name: example ec2 group
+  ec2_group:
+    name: "{{ security_group }}"
+    description: an example EC2 group
+    region: ap-south-1
+    rules:
+      - proto: tcp
+        from_port: 80
+        to_port: 80
+        cidr_ip: 0.0.0.0/0
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        cidr_ip: 10.0.0.0/8
+  
+### ec2 instance launch 
+- name : launch the ec2 instance 
+  ec2 :
+        key_name: "{{ keypair }}"
+        instance_type: "{{ instance_type }}"
+        image: "{{ image }}"
+        region: "{{ region }}"
+        wait: yes
+        group: "{{ security_group }}"
+        count: "{{ count }}"
+ register: ec2
+
+- debug:
+    vars: ec2.instance
+
+
+- local_action: copy content={{ec2.instance }} dest=/root/ec2/files/fact.txt
+
+
+
+   
